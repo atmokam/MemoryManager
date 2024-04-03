@@ -2,29 +2,29 @@
 #define ENTRY_HPP
 
 // Intent: leaf entry (only for PTE in my case)
-// I don't know whether it's a good idea to do this or just go with Page instead
 
 #include "EntryBase.hpp"
-
 #include <memory>
 
 namespace PagingManager
 {
     class Page;
+    using PageAddress = unsigned int;
 
     class Entry : public EntryBase
     {
         protected:
-            std::shared_ptr<Page> page = nullptr; // null if invalid
+            PageAddress& pageAddress;
             
         public:
-            Entry(std::shared_ptr<Page> page);
+            Entry(PageAddress& address);
             Entry() = default;
 
             bool isValid() const;
             
-            std::shared_ptr<Page> getPage() const;
-            void setPage(std::shared_ptr<Page> page);
+            PageAddress& getPage() const;
+            void setPage(PageAddress& address);
+
             virtual ~Entry() override = default;
     };
 }

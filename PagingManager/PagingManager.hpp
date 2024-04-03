@@ -2,29 +2,21 @@
 #define PAGINGMANAGER_HPP
 
 #include <memory>
+#include "EntryGroup.hpp"
+#include "EntryGroupBuilder.hpp"
 
-class PagingManager
+namespace PagingManager
 {
-    AddressSplitter addressSplitter;
-    std::unique_ptr<EntryGroup> pdbr;
-public:
-    
-    static PagingManager& getInstance()
+    class PagingManager
     {
-        static PagingManager instance;
-        return instance;
-    }
+        std::shared_ptr<EntryGroup> pdbr;
+        std::unique_ptr<EntryGroupBuilder> entryBuilder;
 
+        std::shared_ptr<BlockAllocator> blockAlloc;
+        std::shared_ptr<FreeListAllocator> freeListAlloc;
+    public:
 
-private:
-    PagingManager();
-
-
-    PagingManager(const PagingManager&) = delete;
-    PagingManager& operator=(const PagingManager&) = delete;
-    PagingManager(PagingManager&&) = delete;
-    PagingManager& operator=(PagingManager&&) = delete;
-    ~PagingManager() = default;
-};
-
+        PagingManager(uint32_t addressSize, uint32_t pageSize);
+    };
+}
 #endif
