@@ -1,6 +1,5 @@
 #include "EntryGroupBuilder.hpp"
 #include <cmath> // pow
-#include <algorithm> // reverse
 
 namespace PagingManager
 {
@@ -8,28 +7,24 @@ namespace PagingManager
     
     std::shared_ptr<EntryGroup> EntryGroupBuilder::initializePageDirectory()
     {
-        entryGroup = std::make_shared<EntryGroup>(std::pow(2, virtualAddressOffsets[0]));
+        entryGroup = std::make_shared<EntryGroup>(std::pow(2, pageDirOffsetBits));
         return entryGroup;
     }
 
 
     void EntryGroupBuilder::calculateVirtualAddressOffsets(auto addressSize, auto pageSize)
     {
-        auto pageOffset = std::log2(pageSize);
-        virtualAddressOffsets.push_back(pageOffset);
-
-        auto leftForIndexing = addressSize - pageOffset;
+        pageOffsetBits = std::log2(pageSize);
+        
+        auto leftForIndexing = addressSize - pageOffsetBits;
         auto entriesPerPage = pageSize / (addressSize / 8);
-        auto bitsToEncodeEntries = std::log2(entriesPerPage);
+        pageTableOffsetBits = std::log2(entriesPerPage);
 
-        while(leftForIndexing > bitsToEncodeEntries)
+        while(leftForIndexing > pageTableOffsetBits)
         {
-            virtualAddressOffsets.push_back(bitsToEncodeEntries);
-            leftForIndexing -= bitsToEncodeEntries;
+            leftForIndexing -= pageTableOffsetBits;
         }
-        virtualAddressOffsets.push_back(leftForIndexing);
-
-        std::reverse(virtualAddressOffsets.begin(), virtualAddressOffsets.end());
+        pageDirOffsetBits = leftForIndexing;
     }
 
     void EntryGroupBuilder::buildPageTables(std::shared_ptr<EntryGroup> pdbrEntry)

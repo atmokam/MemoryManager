@@ -9,7 +9,9 @@ namespace PagingManager
 {
     class EntryGroupBuilder
     {
-        std::vector<uint32_t> virtualAddressOffsets; 
+        uint32_t pageDirOffsetBits;
+        uint32_t pageTableOffsetBits;
+        uint32_t pageOffsetBits; 
         // Virtual address bits quantity, eg. 11 offset, 9 pte, 9 pte, 3 pde for 32 bit and 2048 byte page
 
         std::shared_ptr<EntryGroup> entryGroup; // pde
