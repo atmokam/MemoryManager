@@ -1,13 +1,15 @@
 #ifndef ADDRESSINDICES_HPP
 #define ADDRESSINDICES_HPP
 
+#include <cstdint>
+
 namespace PagingManager
 {
     struct AddressIndices
     {
-        unsigned int pageDir;
-        unsigned int pageTable;
-        unsigned int offset;
+        uint32_t pageDir;
+        uint32_t pageTable;
+        uint32_t offset;
     };
 }
 

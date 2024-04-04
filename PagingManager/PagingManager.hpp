@@ -10,10 +10,8 @@ namespace PagingManager
     class PagingManager
     {
         std::shared_ptr<EntryGroup> pdbr;
-        std::unique_ptr<EntryGroupBuilder> entryBuilder;
-
-        std::shared_ptr<BlockAllocator> blockAlloc;
-        std::shared_ptr<FreeListAllocator> freeListAlloc;
+        std::shared_ptr<EntryGroupBuilder> entryBuilder;
+        std::shared_ptr<VAParser> vaParser;
     public:
 
         PagingManager(uint32_t addressSize, uint32_t pageSize);

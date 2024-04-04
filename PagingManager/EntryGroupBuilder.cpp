@@ -3,8 +3,6 @@
 
 namespace PagingManager
 {
-    
-    
     std::shared_ptr<EntryGroup> EntryGroupBuilder::initializePageDirectory()
     {
         entryGroup = std::make_shared<EntryGroup>(std::pow(2, pageDirOffsetBits));
