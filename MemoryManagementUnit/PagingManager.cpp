@@ -2,7 +2,7 @@
 #include <iostream>
 #include "EntryGroupBuilder.hpp"
 
-namespace PagingManager
+namespace MMU
 {
     PagingManager::PagingManager(uint32_t addressSizeBits, uint32_t pageSizeBytes) :
      entryBuilder(std::make_unique<EntryGroupBuilder>())

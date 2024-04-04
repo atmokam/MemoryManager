@@ -2,7 +2,7 @@
 #define ENTRYBASE_HPP
 
 
-namespace PagingManager
+namespace MMU
 {    
     class EntryBase
     {

@@ -1,7 +1,7 @@
 #include "EntryGroupBuilder.hpp"
 #include <cmath> // pow
 
-namespace PagingManager
+namespace MMU
 {
     std::shared_ptr<EntryGroup> EntryGroupBuilder::initializePageDirectory()
     {

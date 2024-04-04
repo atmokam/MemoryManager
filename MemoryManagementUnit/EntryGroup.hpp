@@ -6,7 +6,7 @@
 
 #include "EntryBase.hpp"
 
-namespace PagingManager
+namespace MMU
 {
     class EntryGroup : public EntryBase
     {

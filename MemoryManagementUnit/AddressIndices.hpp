@@ -3,7 +3,7 @@
 
 #include <cstdint>
 
-namespace PagingManager
+namespace MMU
 {
     struct AddressIndices
     {

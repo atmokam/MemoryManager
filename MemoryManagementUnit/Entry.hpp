@@ -6,7 +6,7 @@
 #include "EntryBase.hpp"
 #include <memory>
 
-namespace PagingManager
+namespace MMU
 {
     class Page;
     using PageAddress = unsigned int;

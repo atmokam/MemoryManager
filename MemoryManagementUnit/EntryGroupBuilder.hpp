@@ -5,7 +5,7 @@
 #include <vector>
 #include "EntryGroup.hpp"
 
-namespace PagingManager
+namespace MMU
 {
     class EntryGroupBuilder
     {
