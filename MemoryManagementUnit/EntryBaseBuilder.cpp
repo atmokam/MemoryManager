@@ -1,16 +1,16 @@
-#include "EntryGroupBuilder.hpp"
+#include "EntryBaseBuilder.hpp"
 #include <cmath> // pow
 
 namespace MMU
 {
-    std::shared_ptr<EntryGroup> EntryGroupBuilder::initializePageDirectory()
+    std::shared_ptr<EntryGroup> EntryBaseBuilder::buildPageDirectory()
     {
         entryGroup = std::make_shared<EntryGroup>(std::pow(2, pageDirOffsetBits));
         return entryGroup;
     }
 
 
-    void EntryGroupBuilder::calculateVirtualAddressOffsets(auto addressSize, auto pageSize)
+    void EntryBaseBuilder::calculateVirtualAddressOffsets(auto addressSize, auto pageSize)
     {
         pageOffsetBits = std::log2(pageSize);
         
@@ -25,7 +25,7 @@ namespace MMU
         pageDirOffsetBits = leftForIndexing;
     }
 
-    void EntryGroupBuilder::buildPageTables(std::shared_ptr<EntryGroup> pdbrEntry)
+    void EntryBaseBuilder::buildPageTablesOn(std::shared_ptr<EntryGroup> pdbrEntry)
     {
 
         // we need to somehow walk the page table and if the chain contains no more nullptrs, we need to create a new entry group

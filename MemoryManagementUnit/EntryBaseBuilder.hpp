@@ -7,7 +7,7 @@
 
 namespace MMU
 {
-    class EntryGroupBuilder
+    class EntryBaseBuilder
     {
         uint32_t pageDirOffsetBits;
         uint32_t pageTableOffsetBits;
@@ -17,9 +17,10 @@ namespace MMU
         std::shared_ptr<EntryGroup> entryGroup; // pde
         
     public:
-        std::shared_ptr<EntryGroup> initializePageDirectory();
-        void calculateVirtualAddressOffsets(auto addressSize, auto pageSize);
-        void buildPageTables(std::shared_ptr<EntryGroup> pdbrEntry);
+        std::shared_ptr<EntryGroup> buildPageDirectory();
+        //void calculateVirtualAddressOffsets(auto addressSize, auto pageSize); // remove this does belong here
+        
+        void buildPageTablesOn(std::shared_ptr<EntryGroup> pdbrEntry);
     };
 }
 
