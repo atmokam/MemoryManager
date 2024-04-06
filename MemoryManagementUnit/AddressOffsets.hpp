@@ -1,5 +1,5 @@
-#ifndef ADDRESSINDICES_HPP
-#define ADDRESSINDICES_HPP
+#ifndef ADDRESSOFFSETS_HPP
+#define ADDRESSOFFSETS_HPP
 
 #include <cstdint>
 #include <vector>

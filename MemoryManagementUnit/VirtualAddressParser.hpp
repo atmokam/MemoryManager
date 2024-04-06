@@ -3,20 +3,22 @@
 
 #include <cstdint>
 #include "AddressOffsets.hpp"
-#include "AddressOffsetBits.hpp"
+#include "AddressBits.hpp"
 
 namespace MMU
 {
 
     class VirtualAddressParser
     {
-        AddressOffsetBits offsetBits;
+        AddressBits offsetBits;
 
         void calculateVirtualAddressOffsets(auto addressSize, auto pageSize); 
     public:
 
         VirtualAddressParser(uint32_t addressSize, uint32_t pageSize);
         AddressOffsets parse(uint32_t virtualAddress) const;
+
+        AddressBits getOffsetBits() const;
 
     };
 }

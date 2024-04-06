@@ -7,7 +7,7 @@ namespace MMU
         vaParser(std::make_shared<VirtualAddressParser>(addressSizeBits, pageSizeBytes))
     {
         entryBuilder = std::make_shared<EntryBaseBuilder>();
-        entryBuilder->setVAOffsetBits(vaParser->getOffsetBits());
+        entryBuilder->setOffsetBits(vaParser->getOffsetBits());
         pdbr = entryBuilder->buildPageDirectory();
     }
 

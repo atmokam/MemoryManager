@@ -5,7 +5,7 @@ namespace MMU
 {
     std::shared_ptr<EntryGroup> EntryBaseBuilder::buildPageDirectory()
     {
-        pdbr = std::make_shared<EntryGroup>(1 << vaOffsetBits.pageDirOffset);
+        pdbr = std::make_shared<EntryGroup>(1 << vaOffsetBits.pageDir);
         return std::dynamic_pointer_cast<EntryGroup>(pdbr);
     }
 

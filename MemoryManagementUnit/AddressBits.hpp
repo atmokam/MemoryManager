@@ -1,5 +1,5 @@
-#ifndef VAOFFSETBITS_HPP
-#define VAOFFSETBITS_HPP
+#ifndef VABITS_HPP
+#define VABITS_HPP
 
 #include <cstddef>
 #include <cstdint>
@@ -8,12 +8,12 @@
 
 namespace MMU
 {
-    struct AddressOffsetBits
+    struct AddressBits
     {
-        uint32_t pageOffset;
-        uint32_t pageTableOffset;
+        uint32_t page;
+        uint32_t pageTable;
         size_t pteLevels;
-        uint32_t pageDirOffset;
+        uint32_t pageDir;
     };
 }
 
