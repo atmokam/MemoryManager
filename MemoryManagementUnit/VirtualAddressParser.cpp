@@ -33,21 +33,22 @@ namespace MMU
     void VirtualAddressParser::calculateVirtualAddressOffsets(auto addressSize, auto pageSize)
     {
         AddressBits bits;
-        bits.pageOffset = std::log2(pageSize);
+
+        bits.page = std::log2(pageSize);
         
-        auto leftForIndexing = addressSize - bits.pageOffset;
+        auto leftForIndexing = addressSize - bits.page;
         auto entriesPerPage = pageSize / (addressSize / 8);
 
-        bits.pageTableOffset = std::log2(entriesPerPage);
+        bits.pageTable = std::log2(entriesPerPage);
 
         size_t counter = 0;
-        while(leftForIndexing > bits.pageTableOffset)
+        while(leftForIndexing > bits.pageTable)
         {
-            leftForIndexing -= bits.pageTableOffset;
+            leftForIndexing -= bits.pageTable;
             ++counter;
         }
         
-        bits.pageDirOffset = leftForIndexing;
+        bits.pageDir = leftForIndexing;
         bits.pteLevels = counter;
 
         offsetBits = bits;

@@ -6,14 +6,12 @@
 
 namespace MMU
 {
-    using PageAddressPtr = uint32_t*; // I suppose we can keep a raw pointer since there is no ownership involved
-
     class Page : public EntryBase
     {
         PageAddressPtr physicalAddressPtr;
     public:
         Page(PageAddressPtr physicalAddressPtr);
-        uint32_t& operator[](uint32_t offset);
+        PageAddressPtr getPhysicalAddressPtr() const;
     };
 }
 

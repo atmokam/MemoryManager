@@ -8,20 +8,19 @@
 
 namespace MMU
 {
+    struct AddressOffsets;
+
     class EntryGroup : public EntryBase
     {
+    protected:
         std::vector<std::shared_ptr<EntryBase>> entries;
 
-        uint32_t firstFree = 0;
-
     public:
-        std::shared_ptr<EntryBase> at(uint32_t index);
-        void addEntry(std::shared_ptr<EntryBase> entry);
-        EntryGroup(uint32_t size);
-        ~EntryGroup() override = default;
+        explicit EntryGroup(uint32_t size);
+        PageAddressPtr at(AddressOffsets offsets) override = 0;
+        virtual ~EntryGroup() override = default;
 
-        size_t size() const;
-        uint32_t getFirstFreeIndex() const;
+        size_t size() const noexcept;
     };
 }
 #endif

@@ -4,8 +4,8 @@ namespace MMU
 {
     Page::Page(PageAddressPtr physicalAddressPtr) : physicalAddressPtr(physicalAddressPtr){}
 
-    uint32_t& Page::operator[](uint32_t offset)
+    PageAddressPtr Page::getPhysicalAddressPtr() const
     {
-        return physicalAddressPtr[offset];
+        return physicalAddressPtr;
     }
 }

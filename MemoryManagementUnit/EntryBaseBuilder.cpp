@@ -1,12 +1,12 @@
 #include "EntryBaseBuilder.hpp"
-#include "EntryGroup.hpp"
+#include "PageDirectory.hpp"
+
 
 namespace MMU
 {
-    std::shared_ptr<EntryGroup> EntryBaseBuilder::buildPageDirectory()
+    void EntryBaseBuilder::buildPageDirectory()
     {
-        pdbr = std::make_shared<EntryGroup>(1 << vaOffsetBits.pageDir);
-        return std::dynamic_pointer_cast<EntryGroup>(pdbr);
+        pdbr = std::make_shared<PageDirectory>(1u << vaOffsetBits.pageDir);
     }
 
 

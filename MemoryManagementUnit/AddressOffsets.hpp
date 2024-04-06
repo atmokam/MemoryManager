@@ -4,14 +4,14 @@
 #include <cstdint>
 #include <vector>
 
-// Intent: to store the indices, i.e. the offsets
+// Intent: to store the indices of VA, i.e. the offsets
 
 namespace MMU
 {
     struct AddressOffsets
     {
         uint32_t pageDir;
-        std::vector<uint32_t> pageTables; // multi-level page table
+        std::vector<uint32_t> pageTables; // multi-level page table indices
         uint32_t offset;
     };
 }

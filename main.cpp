@@ -3,7 +3,7 @@
 
 int main()
 {
-    MMU::VirtualAddressParser vap(32, 4096);
+    MMU::VirtualAddressParser vap(32, 1024);
     auto offsets = vap.parse(0b10010000001000000000101000000000);
     std::cout << "Page Directory: " << offsets.pageDir << std::endl;
     for(auto& pt : offsets.pageTables)
