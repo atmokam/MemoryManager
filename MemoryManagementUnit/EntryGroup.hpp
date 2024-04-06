@@ -15,7 +15,7 @@ namespace MMU
         uint32_t firstFree = 0;
 
     public:
-        std::shared_ptr<EntryBase> getIndex(uint32_t index);
+        std::shared_ptr<EntryBase> at(uint32_t index);
         void addEntry(std::shared_ptr<EntryBase> entry);
         EntryGroup(uint32_t size);
         ~EntryGroup() override = default;

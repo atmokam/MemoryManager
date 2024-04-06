@@ -1,32 +1,19 @@
 #include "EntryBaseBuilder.hpp"
-#include <cmath> // pow
+#include "EntryGroup.hpp"
 
 namespace MMU
 {
     std::shared_ptr<EntryGroup> EntryBaseBuilder::buildPageDirectory()
     {
-        entryGroup = std::make_shared<EntryGroup>(std::pow(2, pageDirOffsetBits));
-        return entryGroup;
+        pdbr = std::make_shared<EntryGroup>(1 << vaOffsetBits.pageDirOffset);
+        return std::dynamic_pointer_cast<EntryGroup>(pdbr);
     }
 
 
-    void EntryBaseBuilder::calculateVirtualAddressOffsets(auto addressSize, auto pageSize)
-    {
-        pageOffsetBits = std::log2(pageSize);
-        
-        auto leftForIndexing = addressSize - pageOffsetBits;
-        auto entriesPerPage = pageSize / (addressSize / 8);
-        pageTableOffsetBits = std::log2(entriesPerPage);
+   
 
-        while(leftForIndexing > pageTableOffsetBits)
-        {
-            leftForIndexing -= pageTableOffsetBits;
-        }
-        pageDirOffsetBits = leftForIndexing;
-    }
-
-    void EntryBaseBuilder::buildPageTablesOn(std::shared_ptr<EntryGroup> pdbrEntry)
-    {
+    // void EntryBaseBuilder::buildPageTablesOn(std::shared_ptr<EntryGroup> pdbrEntry)
+    // {
 
         // we need to somehow walk the page table and if the chain contains no more nullptrs, we need to create a new entry group
         // but the entries by level in pts won't differ in size
@@ -39,7 +26,7 @@ namespace MMU
         //     auto nextEntry = currentEntry->getIndex(freeIndex);
         //     currentEntry = 
         // }
-    }
+    
     
     
 }

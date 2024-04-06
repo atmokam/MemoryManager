@@ -3,24 +3,22 @@
 
 #include <memory>
 #include <vector>
-#include "EntryGroup.hpp"
+#include "EntryBase.hpp"
+#include "AddressOffsetBits.hpp"
 
 namespace MMU
 {
+    class EntryGroup;
+
     class EntryBaseBuilder
     {
-        uint32_t pageDirOffsetBits;
-        uint32_t pageTableOffsetBits;
-        uint32_t pageOffsetBits; 
+        AddressOffsetBits vaOffsetBits;
         // Virtual address bits quantity, eg. 11 offset, 9 pte, 9 pte, 3 pde for 32 bit and 2048 byte page
-
-        std::shared_ptr<EntryGroup> entryGroup; // pde
+        std::shared_ptr<EntryBase> pdbr; // pde
         
     public:
         std::shared_ptr<EntryGroup> buildPageDirectory();
-        //void calculateVirtualAddressOffsets(auto addressSize, auto pageSize); // remove this does belong here
-        
-        void buildPageTablesOn(std::shared_ptr<EntryGroup> pdbrEntry);
+        void setVAOffsetBits(AddressOffsetBits vaOffsetBits);
     };
 }
 

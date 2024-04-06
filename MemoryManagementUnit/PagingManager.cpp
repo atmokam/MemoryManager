@@ -1,16 +1,13 @@
 #include "PagingManager.hpp"
 #include <iostream>
-#include "EntryGroupBuilder.hpp"
 
 namespace MMU
 {
     PagingManager::PagingManager(uint32_t addressSizeBits, uint32_t pageSizeBytes) :
         vaParser(std::make_shared<VirtualAddressParser>(addressSizeBits, pageSizeBytes))
     {
-        entryBuilder = std::make_shared<EntryGroupBuilder>();
-        entryBuilder->setPDEBits(vaParser->getPDEBits());
-        entryBuilder->setPTEBits(vaParser->getPTEBits());
-        entryBuilder->setPageOffsetBits(vaParser->getPageOffsetBits());
+        entryBuilder = std::make_shared<EntryBaseBuilder>();
+        entryBuilder->setVAOffsetBits(vaParser->getOffsetBits());
         pdbr = entryBuilder->buildPageDirectory();
     }
 
@@ -19,8 +16,15 @@ namespace MMU
         
     }
 
-     
-    
+    void PagingManager::mapPageTo(uint32_t virtualAddress, PageAddressPtr page)
+    {
+        auto addressIndices = vaParser->parse(virtualAddress);
 
+    }
+
+    void PagingManager::unmapPageEntry(uint32_t virtualAddress)
+    {
+        
+    }
 
 }
