@@ -10,10 +10,10 @@ namespace MMU
 {
     struct AddressBits
     {
-        uint32_t page;
-        uint32_t pageTable;
+        unsigned int page;
+        unsigned int pageTable;
         size_t pteLevels;
-        uint32_t pageDir;
+        unsigned int pageDir;
     };
 }
 

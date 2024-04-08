@@ -3,7 +3,7 @@
 
 namespace MMU
 {
-    EntryGroup::EntryGroup(uint32_t entriesQuantity) :
+    EntryGroup::EntryGroup(unsigned int entriesQuantity) :
      entries(entriesQuantity, nullptr)
     {}
 
@@ -12,5 +12,16 @@ namespace MMU
     {
         return entries.size();
     }    
+
+    size_t EntryGroup::getLevel() const noexcept
+    {
+        return level;
+    }
+
+    void EntryGroup::setLevel(size_t level) noexcept
+    {
+        this->level = level;
+    }
+
 
 }

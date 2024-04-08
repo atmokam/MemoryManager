@@ -8,8 +8,11 @@ namespace MMU
     class PageTable : public EntryGroup
     {
     public:
-        PageTable(uint32_t size);
-        PageAddressPtr at(AddressOffsets offsets) override;
+        explicit PageTable(unsigned int size);
+        std::shared_ptr<EntryBase> getEntry(size_t index) override;
+        void setEntry(size_t index, std::shared_ptr<EntryBase> entry) override;
+
+        void accept(IVisitor& visitor) override;
     };
 }
 

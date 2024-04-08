@@ -8,10 +8,11 @@ namespace MMU
 {
     class Page : public EntryBase
     {
-        PageAddressPtr physicalAddressPtr;
+        PageAddressPtr physicalAddressPtr = nullptr;
     public:
         Page(PageAddressPtr physicalAddressPtr);
         PageAddressPtr getPhysicalAddressPtr() const;
+        void setPhysicalAddressPtr(PageAddressPtr physicalAddressPtr);
     };
 }
 

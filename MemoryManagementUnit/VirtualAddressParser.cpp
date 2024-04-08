@@ -4,19 +4,19 @@
 
 namespace MMU
 {
-    VirtualAddressParser::VirtualAddressParser(uint32_t addressSize, uint32_t pageSize)
+    VirtualAddressParser::VirtualAddressParser(unsigned int addressSize, unsigned int pageSize)
     {
         calculateVirtualAddressOffsets(addressSize, pageSize);
     }
 
-    AddressOffsets VirtualAddressParser::parse(uint32_t virtualAddress) const
+    AddressOffsets VirtualAddressParser::parse(unsigned int virtualAddress) const
     {
         AddressOffsets offsets;
     
         offsets.pageDir = virtualAddress >> (offsetBits.pageTable * offsetBits.pteLevels + offsetBits.page);
         // eg. 10101010110000000000000000000000 -> 1010101011 for 10 bit PDE
 
-        uint32_t ptMask = (1u << offsetBits.pageTable) - 1;
+        unsigned int ptMask = (1u << offsetBits.pageTable) - 1;
         auto levels = offsetBits.pteLevels;
 
         for(size_t i = 0; i < levels; ++i)
@@ -24,7 +24,7 @@ namespace MMU
                 (virtualAddress >> (offsetBits.page + offsetBits.pageTable * i)) & ptMask);
         
 
-        uint32_t pageMask = (1u << offsetBits.page) - 1;
+        unsigned int pageMask = (1u << offsetBits.page) - 1;
         offsets.offset = virtualAddress & pageMask;
 
         return offsets;
@@ -52,5 +52,10 @@ namespace MMU
         bits.pteLevels = counter;
 
         offsetBits = bits;
+    }
+
+    AddressBits VirtualAddressParser::getOffsetBits() const
+    {
+        return offsetBits;
     }
 }

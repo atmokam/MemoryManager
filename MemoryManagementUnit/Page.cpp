@@ -8,4 +8,9 @@ namespace MMU
     {
         return physicalAddressPtr;
     }
+
+    void Page::setPhysicalAddressPtr(PageAddressPtr physicalAddressPtr)
+    {
+        this->physicalAddressPtr = physicalAddressPtr;
+    }
 }

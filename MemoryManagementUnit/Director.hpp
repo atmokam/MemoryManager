@@ -15,11 +15,11 @@ namespace MMU
         std::shared_ptr<AllocationManager> allocManager;
     public:
 
-        Director(uint32_t addressSize, uint32_t pageSize);
+        Director(unsigned int addressSize, unsigned int pageSize);
 
         void allocate(size_t bytes);
         void deallocate(auto ptr);
-        uint32_t& operator[](uint32_t virtualAddress);
+        unsigned int& operator[](unsigned int virtualAddress);
     };
 }
 

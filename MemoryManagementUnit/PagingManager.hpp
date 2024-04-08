@@ -15,14 +15,14 @@ namespace MMU
         std::shared_ptr<EntryBaseBuilder> entryBuilder;
         std::shared_ptr<VirtualAddressParser> vaParser;
 
-        u_int32_t lastMappedAddress;
+        unsigned int lastMappedAddress;
     public:
 
-        PagingManager(uint32_t addressSize, uint32_t pageSize);
+        PagingManager(unsigned int addressSize, unsigned int pageSize);
 
-        uint32_t& translate(uint32_t virtualAddress) const;
-        void mapPageTo(uint32_t virtualAddress, PageAddressPtr page);
-        void unmapPageEntry(uint32_t virtualAddress);
+        unsigned int& translate(unsigned int virtualAddress) const;
+        void mapPageTo(unsigned int virtualAddress, PageAddressPtr page);
+        void unmapEntry(unsigned int virtualAddress);
     };
 }
 #endif

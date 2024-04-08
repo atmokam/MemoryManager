@@ -4,7 +4,7 @@
 
 namespace MMU
 {
-    PagingManager::PagingManager(uint32_t addressSizeBits, uint32_t pageSizeBytes) :
+    PagingManager::PagingManager(unsigned int addressSizeBits, unsigned int pageSizeBytes) :
         vaParser(std::make_shared<VirtualAddressParser>(addressSizeBits, pageSizeBytes))
     {
         entryBuilder = std::make_shared<EntryBaseBuilder>();
@@ -13,24 +13,23 @@ namespace MMU
         pdbr = entryBuilder->getPDBR();
     }
 
-    uint32_t& PagingManager::translate(uint32_t virtualAddress) const
+    unsigned int& PagingManager::translate(unsigned int virtualAddress) const
     {
         auto addressIndices = vaParser->parse(virtualAddress);
         auto pdbrPtr = std::dynamic_pointer_cast<PageDirectory>(pdbr);
-        auto pde = pdbrPtr->at(addressIndices);
-        return *pde;
+        
     }
 
-    void PagingManager::mapPageTo(uint32_t virtualAddress, PageAddressPtr page)
+    void PagingManager::mapPageTo(unsigned int virtualAddress, PageAddressPtr page)
     {
         auto addressIndices = vaParser->parse(virtualAddress);
         entryBuilder->buildPTE(addressIndices, page);
     }
 
-    void PagingManager::unmapPageEntry(uint32_t virtualAddress)
+    void PagingManager::unmapEntry(unsigned int virtualAddress)
     {
         auto addressIndices = vaParser->parse(virtualAddress);
-        entryBuilder->removePTE(addressIndices);
+        //entryBuilder->removePTE(addressIndices);
     }
 
 }

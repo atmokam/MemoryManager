@@ -10,9 +10,9 @@ namespace MMU
 {
     struct AddressOffsets
     {
-        uint32_t pageDir;
-        std::vector<uint32_t> pageTables; // multi-level page table indices
-        uint32_t offset;
+        unsigned int pageDir;
+        std::vector<unsigned int> pageTables; // multi-level page table indices
+        unsigned int offset;
     };
 }
 

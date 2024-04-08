@@ -1,22 +1,26 @@
 #include "PageDirectory.hpp"
 #include "AddressOffsets.hpp"
+#include "IVisitor.hpp"
 #include <algorithm>
 
 namespace MMU
 {
-    PageDirectory::PageDirectory(uint32_t size) : EntryGroup(size)
-    {}
+    PageDirectory::PageDirectory(unsigned int size) : EntryGroup(size){}
 
-    PageAddressPtr PageDirectory::at(AddressOffsets offsets)
+    std::shared_ptr<EntryBase> PageDirectory::getEntry(size_t index)
     {
-        auto index = offsets.pageDir;
-        std::reverse(offsets.pageTables.begin(), offsets.pageTables.end());
-
-        if(entries[index] == nullptr)
-        {
-            return nullptr;
-        }
-        
-        return entries[index]->at(std::move(offsets));
+        return entries.at(index);
     }
+
+    void PageDirectory::setEntry(size_t index, std::shared_ptr<EntryBase> entry)
+    {
+        entries.at(index) = entry;
+    }
+
+    void PageDirectory::accept(IVisitor& visitor)
+    {
+        visitor.visit(*this);
+    }
+
+
 }
