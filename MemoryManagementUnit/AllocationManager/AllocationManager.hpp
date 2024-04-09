@@ -10,7 +10,12 @@ namespace MMU
     class AllocationManager
     {
         std::unordered_map<size_t,std::vector<std::shared_ptr<PagedBlockAllocator>>> allocators;
+
+        void* addressSpace = nullptr;
+
     public:
+        AllocationManager(size_t addressSpaceSize);
+
         unsigned int* allocate(size_t bytes);
         void deallocate(auto ptr); //  how???? maybe pass size?
     };

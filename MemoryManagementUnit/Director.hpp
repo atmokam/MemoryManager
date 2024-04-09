@@ -4,8 +4,8 @@
 // a facade class responsible for coordinating memory allocation and pagetbl management
 
 #include <memory>
-#include "PagingManager.hpp"
-#include "AllocationManager.hpp"
+#include "PagingManager/PagingManager.hpp"
+#include "AllocationManager/AllocationManager.hpp"
 
 
 namespace MMU

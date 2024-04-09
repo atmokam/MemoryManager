@@ -14,5 +14,16 @@ namespace MMU
             pagingManager->mapPageTo(getRecentFreeAddress(), ptr);
         // how?: some way to keep recently freed addresses 
     }
+
+    void Director::deallocate(auto virtualAddress)
+    {
+        pagingManager->unmapEntry(virtualAddress);
+        // add deallocate from allocManager
+    }
+
+    unsigned int& Director::operator[](unsigned int virtualAddress)
+    {
+        return pagingManager->translate(virtualAddress);
+    }
 }
 

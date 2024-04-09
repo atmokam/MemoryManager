@@ -2,10 +2,9 @@
 #define PAGINGMANAGER_HPP
 
 #include <memory>
-#include "EntryGroup.hpp"
-#include "Page.hpp"
-#include "PagingDataStructure/EntryBaseBuilder.hpp"
-#include "VirtualAddressParser.hpp"
+#include "../PagingDataStructure/EntryBase.hpp"
+#include "../PagingDataStructure/EntryBaseBuilder.hpp"
+#include "../VirtualAddressParser.hpp"
 
 namespace MMU
 {

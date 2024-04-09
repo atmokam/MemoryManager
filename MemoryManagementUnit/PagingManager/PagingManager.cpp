@@ -1,5 +1,5 @@
 #include "PagingManager.hpp"
-#include "PageDirectory.hpp"
+#include "../PagingDataStructure/PageDirectory.hpp"
 #include <iostream>
 
 namespace MMU

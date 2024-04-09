@@ -18,10 +18,12 @@ namespace MMU
 
         size_t allocatedQuantity = 0;
 
+        void* addressSpace = nullptr;
+
         Block* allocatePage();
 
     public:
-        PagedBlockAllocator(size_t pageSize, size_t blockSize);
+        PagedBlockAllocator(size_t pageSize, size_t blockSize,  void* addressSpace);
 
         size_t getBlockSize() const noexcept;
         size_t getPageSize() const noexcept;

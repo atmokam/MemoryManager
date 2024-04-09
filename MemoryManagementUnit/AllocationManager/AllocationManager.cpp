@@ -1,7 +1,12 @@
 #include "AllocationManager.hpp"
+#include <Windows.h>
 
 namespace MMU
 {
+    AllocationManager::AllocationManager(size_t addressSize): 
+    addressSpace(VirtualAlloc(nullptr, 1u << addressSize, MEM_RESERVE, PAGE_READWRITE)) 
+    {}
+
     unsigned int* AllocationManager::allocate(size_t bytes)
     {
         auto allocator = allocators.find(bytes);

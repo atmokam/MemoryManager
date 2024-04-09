@@ -1,6 +1,6 @@
 #include "VirtualAddressParser.hpp"
 #include <cmath>
-#include <iostream>
+
 
 namespace MMU
 {
@@ -9,12 +9,12 @@ namespace MMU
         calculateVirtualAddressOffsets(addressSize, pageSize);
     }
 
+    // eg. 10101010110000000000000000000000 -> 1010101011 for 10 bit PDE
     AddressOffsets VirtualAddressParser::parse(unsigned int virtualAddress) const
     {
         AddressOffsets offsets;
     
         offsets.pageDir = virtualAddress >> (offsetBits.pageTable * offsetBits.pteLevels + offsetBits.page);
-        // eg. 10101010110000000000000000000000 -> 1010101011 for 10 bit PDE
 
         unsigned int ptMask = (1u << offsetBits.pageTable) - 1;
         auto levels = offsetBits.pteLevels;

@@ -4,8 +4,8 @@
 
 namespace MMU
 {
-    PagedBlockAllocator::PagedBlockAllocator(size_t pageSize, size_t blockSize) :
-        pageSize(pageSize), blockSize(blockSize)
+    PagedBlockAllocator::PagedBlockAllocator(size_t pageSize, size_t blockSize, void* addressSpace) :
+        pageSize(pageSize), blockSize(blockSize), addressSpace(addressSpace)
     {}
 
 
@@ -51,7 +51,7 @@ namespace MMU
 
     Block* PagedBlockAllocator::allocatePage()
     {
-        Block* page = static_cast<Block*>(VirtualAlloc(nullptr, pageSize, MEM_RESERVE | MEM_COMMIT, PAGE_READWRITE));
+        Block* page = static_cast<Block*>(VirtualAlloc(nullptr, pageSize, MEM_COMMIT, PAGE_READWRITE));
         Block * currentBlock = page;
         
         return page;
