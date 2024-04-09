@@ -4,7 +4,7 @@
 #include <memory>
 #include "EntryGroup.hpp"
 #include "Page.hpp"
-#include "EntryBaseBuilder.hpp"
+#include "PagingDataStructure/EntryBaseBuilder.hpp"
 #include "VirtualAddressParser.hpp"
 
 namespace MMU

@@ -1,9 +1,9 @@
 #include "EntryBaseBuilder.hpp"
-#include "PageDirectory.hpp"
+#include "PagingDataStructure/PageDirectory.hpp"
 #include "AddressOffsets.hpp"
-#include "PageTable.hpp"
-#include "EntryGroup.hpp"
-#include "Page.hpp"
+#include "PagingDataStructure/PageTable.hpp"
+#include "PagingDataStructure/EntryGroup.hpp"
+#include "PagingDataStructure/Page.hpp"
 #include <iostream>
 
 
@@ -34,6 +34,7 @@ namespace MMU
             if(tempEntry == nullptr)
             {
                 tempEntry = std::make_shared<PageTable>(1u << vaOffsetBits.pageTable);
+                castToEntryGroup(tempEntry)->setLevel(i + 1);
                 castToEntryGroup(tempParent)->setEntry(offsets.pageTables.at(i), tempEntry);
             }
             tempParent = tempEntry;  

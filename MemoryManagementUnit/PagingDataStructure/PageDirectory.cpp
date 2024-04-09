@@ -17,10 +17,5 @@ namespace MMU
         entries.at(index) = entry;
     }
 
-    void PageDirectory::accept(IVisitor& visitor)
-    {
-        visitor.visit(*this);
-    }
-
 
 }

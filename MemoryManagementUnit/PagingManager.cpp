@@ -29,7 +29,7 @@ namespace MMU
     void PagingManager::unmapEntry(unsigned int virtualAddress)
     {
         auto addressIndices = vaParser->parse(virtualAddress);
-        //entryBuilder->removePTE(addressIndices);
+        entryBuilder->removePTE(addressIndices);
     }
 
 }

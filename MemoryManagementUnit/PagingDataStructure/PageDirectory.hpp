@@ -1,18 +1,16 @@
-#ifndef PAGETABLE_HPP
-#define PAGETABLE_HPP
+#ifndef PAGEDIRECTORY_HPP
+#define PAGEDIRECTORY_HPP
 
 #include "EntryGroup.hpp"
 
 namespace MMU
 {
-    class PageTable : public EntryGroup
+    class PageDirectory : public EntryGroup
     {
     public:
-        explicit PageTable(unsigned int size);
+        explicit PageDirectory(unsigned int size);
         std::shared_ptr<EntryBase> getEntry(size_t index) override;
         void setEntry(size_t index, std::shared_ptr<EntryBase> entry) override;
-
-        void accept(IVisitor& visitor) override;
     };
 }
 

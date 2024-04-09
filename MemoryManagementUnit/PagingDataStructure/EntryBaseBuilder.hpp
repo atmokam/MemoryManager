@@ -3,7 +3,7 @@
 
 #include <memory>
 #include <vector>
-#include "EntryBase.hpp"
+#include "PagingDataStructure/EntryBase.hpp"
 
 #include "AddressBits.hpp"
 

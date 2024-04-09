@@ -5,20 +5,21 @@
 
 #include <memory>
 #include "PagingManager.hpp"
+#include "AllocationManager.hpp"
 
 
 namespace MMU
 {
     class Director
     {
-        std::shared_ptr<PagingManager> pdbr;
+        std::shared_ptr<PagingManager> pagingManager;
         std::shared_ptr<AllocationManager> allocManager;
     public:
 
         Director(unsigned int addressSize, unsigned int pageSize);
 
         void allocate(size_t bytes);
-        void deallocate(auto ptr);
+        void deallocate(auto virtualAddress);
         unsigned int& operator[](unsigned int virtualAddress);
     };
 }
